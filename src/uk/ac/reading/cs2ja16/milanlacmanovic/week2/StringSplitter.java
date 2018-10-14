@@ -50,7 +50,7 @@ public class StringSplitter {
      */
    public String[] getStrings() {
     	return Arrays.copyOf(manyStrings, manyStrings.length);
-//    	 return manyStrings;			/// dont use this as it returns address of string
+    	//return manyStrings;			/// dont use this as it returns address of string
     }
     /** 
      * return all elements as an array of integers

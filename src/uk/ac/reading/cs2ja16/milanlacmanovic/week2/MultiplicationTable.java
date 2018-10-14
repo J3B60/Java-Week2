@@ -5,6 +5,8 @@
 
 package uk.ac.reading.cs2ja16.milanlacmanovic.week2;
 
+//import java.util.Arrays;
+
 public class MultiplicationTable {
 	private int maxNum;
 	private int[][] TableData;
@@ -14,20 +16,31 @@ public class MultiplicationTable {
 	 * @param maxN
 	 */
 	MultiplicationTable (int maxN){
-		//create array of right size, then call makeTable to fill it
+		maxNum = maxN;
+		TableData = new int[maxN][maxN];
+		makeTable();
 	}
 	/**
 	 * function to populate the table
 	 */
 	private void makeTable() {
-		//write code to populate the table (loop stuff)
+		for (int i = 1; i <= maxNum; i++) {
+			for (int j = 1; j <=maxNum; j++) {
+				TableData[j-1][i-1] = i*j;
+			}
+		}
 	}
 	/**
 	 * return string with the table
 	 */
 	public String toString() {
 		String res = "MLs Multiplication Table"+"\n";
-		//write code to add data from 2d array to res
+		for (int i = 0; i < maxNum; i++) {
+			for (int j = 0; j < maxNum; j++) {
+				res += TableData[j][i] + "\t";
+			}
+			res += "\n";
+		}
 		return res;
 	}
 	public static void main(String[] args) {
