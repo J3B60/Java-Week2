@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 public class AnagramCheck {
 	
 	private String[] Phrases;
+	private String[] OriginalPhrases;
 	private char[][] SplitPhrases;
 	private int[][] count;
 	private static String res;
@@ -14,12 +15,16 @@ public class AnagramCheck {
 	AnagramCheck (String userIn){
 		StringSplitter S = new StringSplitter(userIn, ";");
 		Phrases = S.getStrings();
+		OriginalPhrases = S.getStrings();
 	}
 	public int cleanup() {
-		int samelengthcheck = Phrases[0].length();
+		int samelengthcheck = 0;
 		for (int i = 0; i < Phrases.length; i++) {
 			Phrases[i] = Phrases[i].replaceAll("\\s+","");
 			Phrases[i] = Phrases[i].toLowerCase();
+			if (i == 0) {
+				samelengthcheck = Phrases[0].length();
+			}
 			if (Phrases[i].length() != samelengthcheck) {
 				return 1;
 			}
@@ -49,20 +54,21 @@ public class AnagramCheck {
 	
 	public void TwoAnagramCompare() {
 		if (Arrays.equals(count[0], count[1])) {
-			res = Phrases[0] + " and " + Phrases[1] + " are anagrams";
+			res = "'" + OriginalPhrases[0] + "'" + " and " + "'" + OriginalPhrases[1] + "'" + " are anagrams";
 		}
 		else {
-			res = Phrases[0] + " and " + Phrases[1] + " are not anagrams";
+			res = "'" + OriginalPhrases[0] + "'" + " and " + "'" + OriginalPhrases[1] + "'" + " are not anagrams";
 		}
 	}
 	
 	public void findAnagram() {
 		if (cleanup() == 0) {
+			Split();
 			charCount();
 			TwoAnagramCompare();
 		}
 		else {
-			res = "The two phrases are not anagrams, not the same number of letters";
+			res = "'" + OriginalPhrases[0] + "'" + " and " + "'" + OriginalPhrases[1] + "'" + " anre not anagrams, not the same number of letters";
 		}
 	}
 	
